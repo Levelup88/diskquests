@@ -1,10 +1,11 @@
 {
   "name": "diskquest-store",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "DiskQuest Store static web app",
   "scripts": {
-    "dev": "python3 -m http.server 5500",
-    "start": "python3 -m http.server 5500"
+    "dev": "vercel dev",
+    "build": "echo 'Static site: no build step required'",
+    "preview": "npx serve . -l 5500"
   }
 }
