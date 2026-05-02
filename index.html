@@ -3,125 +3,155 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DiskQuest Store - ขายแผ่นเกมมือ 1 และมือ 2</title>
+  <title>DiskQuest Store | ระบบขายแผ่นเกมมือ 1 และมือ 2</title>
   <style>
-    :root{--bg:#0b1020;--card:#121a31;--muted:#94a3b8;--text:#e2e8f0;--brand:#22c55e;--brand2:#16a34a;--warn:#f59e0b}
-    *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:linear-gradient(180deg,#05070f,#0b1020);color:var(--text)}
-    .wrap{max-width:1100px;margin:0 auto;padding:24px}
-    .hero{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:26px;border:1px solid #1f2a44;border-radius:18px;background:#0f172a}
-    .badge{background:#12331f;color:#86efac;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;display:inline-block}
-    h1{margin:12px 0 8px;font-size:34px} p{color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:16px}
-    .card{background:var(--card);border:1px solid #1f2a44;border-radius:16px;padding:14px}
-    .row{display:flex;justify-content:space-between;align-items:center;gap:10px}
-    .type{padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
-    .new{background:#164e63;color:#a5f3fc}.used{background:#3f2d09;color:#fde68a}
-    .price{font-size:24px;font-weight:800;color:#86efac}
-    .btn{background:var(--brand);color:#052e16;border:none;padding:10px 14px;border-radius:10px;font-weight:800;cursor:pointer}
-    .btn:hover{background:var(--brand2)}
-    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
-    input,select{background:#0b1227;border:1px solid #2a3555;color:var(--text);padding:10px;border-radius:10px}
-    table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid #233052;text-align:left}th{color:#86efac}
-    .footer{margin-top:24px;color:#64748b;font-size:13px;text-align:center}
+    :root { --bg:#080d1a;--panel:#101a32;--panel2:#0f172a;--line:#253452;--text:#e2e8f0;--muted:#94a3b8;--ok:#22c55e;--warn:#f59e0b;--danger:#ef4444; }
+    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(180deg,#050815,#0b1020);color:var(--text)}
+    .container{max-width:1180px;margin:auto;padding:24px}
+    .hero,.card{background:var(--panel2);border:1px solid var(--line);border-radius:16px}
+    .hero{padding:22px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+    .badge{display:inline-block;background:#16301f;color:#86efac;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:700}
+    h1{margin:10px 0 8px;font-size:32px} p{margin:0;color:var(--muted)}
+    .btn{border:none;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer}
+    .btn.primary{background:var(--ok);color:#052e16}.btn.primary:hover{filter:brightness(1.05)}
+    .btn.secondary{background:#1d2a48;color:#cbd5e1;border:1px solid #32456d}
+    .layout{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:16px}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+    input,select{background:#0b1227;border:1px solid #2b3b5f;color:var(--text);padding:10px;border-radius:10px}
+    .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+    .kpi .card{padding:12px}.kpi .n{font-size:26px;font-weight:800;color:#86efac}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+    .card{padding:14px}.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .type{font-size:12px;font-weight:700;border-radius:999px;padding:3px 9px}.new{background:#0f3f60;color:#a5f3fc}.used{background:#4a3714;color:#fde68a}
+    .price{font-size:24px;font-weight:900;color:#86efac}.stock.low{color:var(--warn);font-weight:700}
+    table{width:100%;border-collapse:collapse} th,td{padding:10px;border-bottom:1px solid #22304d;text-align:left} th{color:#86efac;font-size:13px}
+    .status{font-size:12px;font-weight:700;padding:4px 8px;border-radius:999px}.paid{background:#14321d;color:#86efac}.sent{background:#122b48;color:#93c5fd}
+    .form{display:grid;gap:10px}.form h3{margin:0 0 6px}
+    .footer{text-align:center;margin-top:18px;font-size:13px;color:#64748b}
+    @media (max-width:900px){.layout{grid-template-columns:1fr}.kpi{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <section class="hero">
-      <div>
-        <span class="badge">ร้านขายแผ่นเกม</span>
-        <h1>DiskQuest Store</h1>
-        <p>เว็บแอปสำหรับธุรกิจขายแผ่นเกม <b>มือ 1</b> และ <b>มือ 2</b> พร้อมระบบค้นหา จัดการสต็อก และบันทึกยอดขาย</p>
-      </div>
-      <button class="btn" onclick="seedData()">เพิ่มสินค้าตัวอย่าง</button>
-    </section>
-
-    <div class="toolbar">
-      <input id="search" placeholder="ค้นหาเกม เช่น FIFA, GTA, Zelda" oninput="renderProducts()" />
-      <select id="filterType" onchange="renderProducts()">
-        <option value="all">ทั้งหมด</option>
-        <option value="มือ 1">มือ 1</option>
-        <option value="มือ 2">มือ 2</option>
-      </select>
-      <button class="btn" onclick="openForm()">+ เพิ่มสินค้า</button>
+<div class="container">
+  <section class="hero">
+    <div>
+      <span class="badge">Game Disc Business Web App</span>
+      <h1>DiskQuest Store</h1>
+      <p>ระบบจัดการร้านขายแผ่นเกมมือ 1 / มือ 2: คลังสินค้า, บันทึกการขาย, และสรุปยอดธุรกิจในหน้าเดียว</p>
     </div>
+    <button class="btn primary" id="seedBtn">เติมข้อมูลตัวอย่าง</button>
+  </section>
 
-    <div id="productGrid" class="grid"></div>
+  <div class="kpi" id="kpi"></div>
 
-    <h2>ประวัติการขายล่าสุด</h2>
+  <section class="layout">
     <div class="card">
+      <div class="toolbar">
+        <input id="search" placeholder="ค้นหาเกมหรือแพลตฟอร์ม" />
+        <select id="filterType"><option value="all">ทั้งหมด</option><option value="มือ 1">มือ 1</option><option value="มือ 2">มือ 2</option></select>
+      </div>
+      <div id="productGrid" class="grid"></div>
+
+      <h3>ประวัติการขายล่าสุด</h3>
       <table>
         <thead><tr><th>วันที่</th><th>สินค้า</th><th>ประเภท</th><th>ราคา</th><th>สถานะ</th></tr></thead>
         <tbody id="salesBody"></tbody>
       </table>
     </div>
 
-    <p class="footer">© 2026 DiskQuest Store - ระบบบริหารร้านแผ่นเกม</p>
-  </div>
+    <aside class="card">
+      <form id="addProductForm" class="form">
+        <h3>เพิ่มสินค้าใหม่</h3>
+        <input name="name" required placeholder="ชื่อเกม" />
+        <select name="platform" required><option>PS5</option><option>PS4</option><option>Switch</option><option>Xbox</option></select>
+        <select name="type" required><option>มือ 1</option><option>มือ 2</option></select>
+        <input name="price" type="number" min="1" required placeholder="ราคา (บาท)" />
+        <input name="stock" type="number" min="1" required placeholder="จำนวนสต็อก" />
+        <button class="btn primary" type="submit">บันทึกสินค้า</button>
+      </form>
+    </aside>
+  </section>
 
-  <script>
-    const products = [
-      { name:'Elden Ring', platform:'PS5', type:'มือ 1', price:1790, stock:5 },
-      { name:'God of War Ragnarök', platform:'PS5', type:'มือ 2', price:1190, stock:2 },
-      { name:'Mario Kart 8 Deluxe', platform:'Switch', type:'มือ 1', price:1590, stock:6 },
-    ];
-    const sales = [
-      { date:'2026-05-01', item:'God of War Ragnarök', type:'มือ 2', price:1190, status:'ชำระแล้ว' },
-      { date:'2026-05-01', item:'Elden Ring', type:'มือ 1', price:1790, status:'จัดส่งแล้ว' },
-    ];
+  <p class="footer">© 2026 DiskQuest Store</p>
+</div>
 
-    function thb(n){ return new Intl.NumberFormat('th-TH').format(n)+' บาท'; }
+<script>
+const STORE_KEY='diskquest_store_v2';
+const defaultProducts=[
+  {id:1,name:'Elden Ring',platform:'PS5',type:'มือ 1',price:1790,stock:5},
+  {id:2,name:'God of War Ragnarök',platform:'PS5',type:'มือ 2',price:1190,stock:2},
+  {id:3,name:'Mario Kart 8 Deluxe',platform:'Switch',type:'มือ 1',price:1590,stock:6}
+];
+const defaultSales=[
+  {date:'2026-05-01',item:'God of War Ragnarök',type:'มือ 2',price:1190,status:'ชำระแล้ว'},
+  {date:'2026-05-01',item:'Elden Ring',type:'มือ 1',price:1790,status:'จัดส่งแล้ว'}
+];
 
-    function renderProducts(){
-      const q=document.getElementById('search').value.toLowerCase();
-      const t=document.getElementById('filterType').value;
-      const el=document.getElementById('productGrid');
-      el.innerHTML='';
-      products
-        .filter(p=>(t==='all'||p.type===t) && (p.name.toLowerCase().includes(q)||p.platform.toLowerCase().includes(q)))
-        .forEach(p=>{
-          const card=document.createElement('div'); card.className='card';
-          card.innerHTML=`<div class="row"><strong>${p.name}</strong><span class="type ${p.type==='มือ 1'?'new':'used'}">${p.type}</span></div>
-            <p>${p.platform} • คงเหลือ ${p.stock} แผ่น</p>
-            <div class="row"><span class="price">${thb(p.price)}</span><button class="btn" onclick="sell('${p.name.replace(/'/g,"\\'")}')">ขายสินค้า</button></div>`;
-          el.appendChild(card);
-        });
-    }
+let state=loadState();
+function thb(n){return new Intl.NumberFormat('th-TH').format(n)+' บาท';}
+function today(){return new Date().toISOString().slice(0,10);} 
+function saveState(){localStorage.setItem(STORE_KEY,JSON.stringify(state));}
+function loadState(){
+  const raw=localStorage.getItem(STORE_KEY);
+  if(!raw) return {products:[...defaultProducts],sales:[...defaultSales],nextId:4};
+  try{return JSON.parse(raw);}catch{return {products:[...defaultProducts],sales:[...defaultSales],nextId:4};}
+}
 
-    function renderSales(){
-      const body=document.getElementById('salesBody'); body.innerHTML='';
-      sales.forEach(s=>{
-        const tr=document.createElement('tr');
-        tr.innerHTML=`<td>${s.date}</td><td>${s.item}</td><td>${s.type}</td><td>${thb(s.price)}</td><td>${s.status}</td>`;
-        body.appendChild(tr);
-      });
-    }
+function renderKpi(){
+  const totalStock=state.products.reduce((a,p)=>a+p.stock,0);
+  const totalItems=state.products.length;
+  const revenue=state.sales.reduce((a,s)=>a+s.price,0);
+  document.getElementById('kpi').innerHTML=`
+    <div class="card"><div>จำนวนสินค้า</div><div class="n">${totalItems}</div></div>
+    <div class="card"><div>สต็อกรวม</div><div class="n">${totalStock}</div></div>
+    <div class="card"><div>ยอดขายสะสม</div><div class="n">${thb(revenue)}</div></div>`;
+}
 
-    function sell(name){
-      const p=products.find(x=>x.name===name);
-      if(!p || p.stock<=0){alert('สินค้าไม่พอในสต็อก');return;}
-      p.stock-=1;
-      sales.unshift({date:new Date().toISOString().slice(0,10),item:p.name,type:p.type,price:p.price,status:'ชำระแล้ว'});
-      renderProducts(); renderSales();
-    }
+function renderProducts(){
+  const q=document.getElementById('search').value.trim().toLowerCase();
+  const type=document.getElementById('filterType').value;
+  const list=state.products.filter(p=>(type==='all'||p.type===type)&&(`${p.name} ${p.platform}`.toLowerCase().includes(q)));
+  const grid=document.getElementById('productGrid');
+  if(!list.length){grid.innerHTML='<p>ไม่พบสินค้าที่ค้นหา</p>';return;}
+  grid.innerHTML=list.map(p=>`<article class="card"><div class="row"><strong>${p.name}</strong><span class="type ${p.type==='มือ 1'?'new':'used'}">${p.type}</span></div>
+      <p>${p.platform} • <span class="stock ${p.stock<=1?'low':''}">คงเหลือ ${p.stock} แผ่น</span></p>
+      <div class="row"><span class="price">${thb(p.price)}</span><button class="btn secondary" onclick="sell(${p.id})">ขายสินค้า</button></div></article>`).join('');
+}
 
-    function openForm(){
-      const name=prompt('ชื่อเกม'); if(!name) return;
-      const platform=prompt('แพลตฟอร์ม (PS5 / PS4 / Switch / Xbox)','PS5')||'PS5';
-      const type=prompt('ประเภท (มือ 1 หรือ มือ 2)','มือ 1')||'มือ 1';
-      const price=Number(prompt('ราคาขาย (บาท)','990')||0);
-      const stock=Number(prompt('จำนวนสต็อก','1')||1);
-      products.unshift({name,platform,type:type==='มือ 2'?'มือ 2':'มือ 1',price,stock});
-      renderProducts();
-    }
+function renderSales(){
+  const body=document.getElementById('salesBody');
+  body.innerHTML=state.sales.slice(0,8).map(s=>`<tr><td>${s.date}</td><td>${s.item}</td><td>${s.type}</td><td>${thb(s.price)}</td><td><span class="status ${s.status==='ชำระแล้ว'?'paid':'sent'}">${s.status}</span></td></tr>`).join('');
+}
 
-    function seedData(){
-      products.push({ name:'FIFA 26', platform:'PS5', type:'มือ 1', price:1990, stock:4 });
-      products.push({ name:'GTA V', platform:'PS4', type:'มือ 2', price:590, stock:3 });
-      renderProducts();
-    }
+function sell(id){
+  const p=state.products.find(x=>x.id===id);
+  if(!p || p.stock<=0){alert('สินค้าไม่พอในสต็อก');return;}
+  p.stock-=1;
+  state.sales.unshift({date:today(),item:p.name,type:p.type,price:p.price,status:'ชำระแล้ว'});
+  saveState(); renderAll();
+}
 
-    renderProducts(); renderSales();
-  </script>
+function addProduct(evt){
+  evt.preventDefault();
+  const fd=new FormData(evt.target);
+  const item={id:state.nextId++,name:String(fd.get('name')).trim(),platform:String(fd.get('platform')),type:String(fd.get('type')),price:Number(fd.get('price')),stock:Number(fd.get('stock'))};
+  if(!item.name||item.price<=0||item.stock<=0){alert('กรอกข้อมูลไม่ครบถ้วน');return;}
+  state.products.unshift(item);
+  saveState(); evt.target.reset(); renderAll();
+}
+
+function seedData(){
+  state.products.push({id:state.nextId++,name:'FIFA 26',platform:'PS5',type:'มือ 1',price:1990,stock:4});
+  state.products.push({id:state.nextId++,name:'GTA V',platform:'PS4',type:'มือ 2',price:590,stock:3});
+  saveState(); renderAll();
+}
+
+function renderAll(){renderKpi();renderProducts();renderSales();}
+document.getElementById('search').addEventListener('input',renderProducts);
+document.getElementById('filterType').addEventListener('change',renderProducts);
+document.getElementById('addProductForm').addEventListener('submit',addProduct);
+document.getElementById('seedBtn').addEventListener('click',seedData);
+renderAll();
+</script>
 </body>
 </html>
